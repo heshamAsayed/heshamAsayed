@@ -108,7 +108,7 @@ public sealed class HeshamAhmed : IDeveloper
 
 ---
 
-## `$ curl -X GET /reach_me`
+## `$ curl -X GET /ReachMe`
 
 ```bash
 $ curl -X POST https://github.com/heshamAsayed/api/contact \
@@ -117,7 +117,7 @@ $ curl -X POST https://github.com/heshamAsayed/api/contact \
     "email"     : "heshmahmed146@gmail.com",
     "linkedin"  : "linkedin.com/in/hesham-a7med",
     "github"    : "github.com/heshamAsayed",
-    "phone"     : "+201147284782",
+    "phone"     : "+20 11 4728 4782",
     "location"  : "Minya, Egypt",
     "available" : true,
     "role"      : "Software Engineer / .NET Developer",
