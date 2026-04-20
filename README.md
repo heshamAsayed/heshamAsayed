@@ -47,7 +47,7 @@ public sealed class HeshamAhmed : IDeveloper
 ## 🔥 Highlights
 
 - 🎓 **ITI Graduate** — Full Stack .NET Development track
-
+- 🎓 **B.Sc. Computer Science — Minya University
 
 ---
 
