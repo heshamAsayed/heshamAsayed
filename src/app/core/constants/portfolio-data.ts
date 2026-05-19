@@ -7,8 +7,8 @@ import {
   SocialLink
 } from '../models/portfolio.models';
 
-export const CV_FILE_PATH = '/Hesham%20Ahmed%20_%20CV.pdf';
-export const PROFILE_IMAGE_PATH = '/Portfolio_image.png';
+export const CV_FILE_PATH = 'Hesham%20Ahmed%20_%20CV.pdf';
+export const PROFILE_IMAGE_PATH = 'Portfolio_image.png';
 export const GITHUB_USERNAME = 'heshamAsayed';
 
 export const NAV_ITEMS: NavItem[] = [
