@@ -1,0 +1,14 @@
+:host {
+  display: block;
+}
+
+.portfolio-main {
+  display: block;
+  width: 100%;
+}
+
+
+.portfolio-section {
+  scroll-margin-top: 6rem;
+  width: 100%;
+}

@@ -1,0 +1,232 @@
+.hero-shell {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  padding-top: 7rem;
+}
+
+.hero-shell__layout {
+  display: grid;
+  grid-template-columns: 1fr minmax(280px, 35vw);
+  gap: 3.5rem;
+  align-items: flex-start;
+}
+
+.hero-shell__content,
+.hero-shell__header {
+  display: grid;
+}
+
+.hero-shell__content {
+  gap: 1.15rem;
+}
+
+.hero-shell__header {
+  gap: 0.7rem;
+}
+
+.hero-shell__name {
+  margin: 0;
+  color: var(--text-strong);
+  font-family: var(--display-font);
+  font-size: clamp(2.2rem, 6vw, 3.8rem);
+  line-height: 0.95;
+}
+
+.hero-shell__role {
+  margin: 0;
+  font-size: clamp(1rem, 1.1vw, 0.75rem);
+}
+
+.hero-shell__social-line {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.hero-shell__social-link:hover {
+  color: var(--brand-color);
+}
+
+.hero-shell__social-icon,
+.hero-shell__trigger {
+  border: 0;
+  background: transparent;
+  padding: 0;
+}
+
+.hero-shell__social-icon {
+  font-size: var(--font-size-social-icon);
+  transition:
+    transform var(--transition-base),
+    color var(--transition-base);
+}
+
+.hero-shell__social-icon:hover {
+  transform: translateY(-2px) scale(1.08);
+}
+
+.hero-shell__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--accent-secondary);
+  font-style: italic;
+  text-decoration: underline;
+  transition:
+    color var(--transition-base),
+    transform var(--transition-base);
+}
+
+.hero-shell__trigger:hover {
+  color: var(--accent);
+  transform: translateX(2px);
+}
+
+.hero-shell__project-comment {
+  margin-left: 0.45rem;
+}
+
+.hero-shell__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.hero-shell__action-link {
+  text-decoration: none;
+}
+
+.hero-shell__action-link:hover {
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+}
+
+.hero-shell__image {
+  position: relative;
+  overflow: visible;
+  width: 100%;
+  max-width: 400px;
+  margin: -2rem auto;
+  /* padding-top: 10rem; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2rem;
+}
+
+.hero-shell__image-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: visible;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+
+.hero-shell__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition:
+    transform 0.5s ease,
+    filter 0.5s ease;
+  display: block;
+  border-radius: 50%;
+}
+
+.hero-shell__photo--enhanced {
+  transform: scale(1.1);
+  filter: contrast(1.15) brightness(1.06);
+  position: relative;
+  z-index: 10;
+  border-radius: 50px;
+}
+
+.hero-shell__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  padding: 1rem 1.15rem;
+  background: rgba(0, 0, 0, 0.78);
+  color: var(--success);
+  transition: opacity 0.22s ease;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.hero-shell__overlay--visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+.hero-shell__overlay-content {
+  width: min(100%, 24rem);
+  transition: opacity 0.35s ease;
+}
+
+.hero-shell__overlay-line {
+  margin: 0 0 0.4rem;
+  font-size: var(--font-size-overlay);
+}
+
+.hero-shell__photo--enhanced+.hero-shell__overlay .hero-shell__overlay-content {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+
+  z-index: 100;
+}
+
+.hero-shell__progress {
+  margin-top: 1rem;
+}
+
+.hero-shell__progress-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.45rem;
+  font-size: var(--font-size-progress);
+}
+
+.hero-shell__progress-bar {
+  width: 100%;
+  height: 0.6rem;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.hero-shell__progress-bar span {
+  display: block;
+  height: 100%;
+  background: var(--accent-secondary);
+}
+
+@media (max-width: 767px) {
+  .hero-shell__layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .hero-shell__image {
+    order: -1;
+    max-width: 280px;
+    margin: 0 auto 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .hero-shell__image-frame {
+    width: 100%;
+    margin-left: 0;
+  }
+}

@@ -1,0 +1,39 @@
+<div class="section-shell experience-shell" #experienceSection>
+  <app-section-label
+    [label]="'//=========================================\n// &nbsp;&nbsp;&nbsp;Experience\n//=========================================\n\n'"
+    hint="// WorkHistory: loading..."
+  ></app-section-label>
+
+  <app-terminal-window
+    title="hesham@portfolio: ~/experience $"
+    [lines]="terminalLines()"
+    [collapsed]="terminalCollapsed()"
+    [canToggle]="animationFinished()"
+    [formatLine]="formatTerminalLine.bind(this)"
+    (toggle)="toggleTerminal()"
+  ></app-terminal-window>
+
+  @if (timelineVisible()) {
+    <div class="experience-shell__timeline">
+      @for (item of items; track item.company) {
+        <article class="experience-shell__card panel">
+          <p class="experience-shell__period">// {{ item.period }} · {{ item.location }}</p>
+          <h3 class="experience-shell__company">{{ item.company }}</h3>
+          <p class="experience-shell__role">{{ item.role }}</p>
+
+          <div class="code-panel experience-shell__code">
+            <div class="code-body">
+              <p class="experience-shell__lead">{{ item.codeLead }}</p>
+
+              @for (comment of item.comments; track comment) {
+                <p class="experience-shell__comment">// {{ comment }}</p>
+              }
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+
+    <p class="experience-shell__done">// ✓ All jobs rendered successfully</p>
+  }
+</div>

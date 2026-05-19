@@ -1,0 +1,97 @@
+<nav class="navbar" [class.navbar--scrolled]="isScrolled()">
+  <div class="content-width navbar__inner">
+    <button type="button" class="navbar__logo" (click)="scrollToSection('home')">
+      <span class="navbar__brace">&#123;</span>
+      <span class="navbar__brand">H_A_S</span>
+      <span class="navbar__brace">&#125;</span>
+    </button>
+    <!-- <span class="navbar__badge">
+        [ <span class="status-dot"></span>Open to Work ]
+      </span> -->
+
+    <div class="navbar__links">
+      <span class="navbar__divider" aria-hidden="true"></span>
+      <span class="navbar__badge">
+        [ <span class="status-dot"></span>Open to Work ]
+      </span>
+      <!-- @for (item of navItems; track item.id) {
+        <button
+          type="button"
+          class="navbar__link"
+          [class.navbar__link--active]="activeSection() === item.id"
+          (click)="scrollToSection(item.id)"
+        >
+          <span class="navbar__prefix">//</span>
+          <span>{{ item.label }}</span>
+        </button>
+      } -->
+    </div>
+
+    <div class="navbar__actions">
+       @for (item of navItems; track item.id) {
+        <button
+          type="button"
+          class="navbar__link"
+          [class.navbar__link--active]="activeSection() === item.id"
+          (click)="scrollToSection(item.id)"
+        >
+          <span class="navbar__prefix">//</span>
+          <span>{{ item.label }}</span>
+        </button>
+      }
+      <button type="button" class="navbar__theme" (click)="toggleTheme()">
+        @if (theme.theme() === 'dark') {
+          <span>[ 🌙 dark ]</span>
+        } @else {
+          <span>[ ☀ light ]</span>
+        }
+      </button>
+
+      <button type="button" class="navbar__menu" (click)="toggleMenu()" aria-label="Open menu">
+        &#123; &#125;
+      </button>
+    </div>
+  </div>
+</nav>
+
+@if (isMobileMenuOpen()) {
+  <div class="mobile-menu">
+    <div class="mobile-menu__panel">
+      <div class="mobile-menu__top">
+        <button type="button" class="navbar__logo" (click)="scrollToSection('home')">
+          <span class="navbar__brace">&#123;</span>
+          <span class="navbar__brand">H_A_S</span>
+          <span class="navbar__brace">&#125;</span>
+        </button>
+
+        <button type="button" class="mobile-menu__close" (click)="closeMenu()" aria-label="Close menu">
+          ×
+        </button>
+      </div>
+
+      <div class="mobile-menu__links">
+        @for (item of navItems; track item.id) {
+          <button type="button" class="mobile-menu__link" (click)="scrollToSection(item.id)">
+            <span class="mobile-menu__index">{{ item.index }}.</span>
+            <span class="navbar__prefix">//</span>
+            <span>{{ item.label }}</span>
+          </button>
+        }
+      </div>
+
+      <div class="mobile-menu__footer">
+        <button type="button" class="navbar__theme" (click)="toggleTheme()">
+          @if (theme.theme() === 'dark') {
+            <span>[ 🌙 dark ]</span>
+          } @else {
+            <span>[ ☀ light ]</span>
+          }
+        </button>
+
+        <span class="navbar__badge">
+          [ <span class="status-dot"></span>Open to Work ]
+        </span>
+      </div>
+    </div>
+  </div>
+}

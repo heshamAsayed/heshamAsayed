@@ -1,0 +1,31 @@
+<div class="terminal">
+  <div class="terminal-header">
+    <div class="terminal-title">
+      <span class="toolbar-dots">
+        <span class="toolbar-dot toolbar-dot--red"></span>
+        <span class="toolbar-dot toolbar-dot--yellow"></span>
+        <span class="toolbar-dot toolbar-dot--green"></span>
+      </span>
+      <span>{{ title() }}</span>
+    </div>
+
+    @if (canToggle()) {
+      <button type="button" class="terminal-toggle" (click)="onToggle()">
+        {{ collapsed() ? '▲' : '▼' }}
+      </button>
+    }
+  </div>
+
+  <div class="terminal-output terminal-window__output" [class.terminal-window__output--collapsed]="collapsed()">
+    @for (line of parsedLines(); track $index) {
+      <div class="terminal-output-line">
+        @if (line.prompt) {
+          <span class="terminal-prompt" [innerHTML]="formatLine()(line.prompt)"></span>
+          <span class="terminal-content" [innerHTML]="formatLine()(line.content)"></span>
+        } @else {
+          <span class="terminal-content" [innerHTML]="formatLine()(line.content)"></span>
+        }
+      </div>
+    }
+  </div>
+</div>

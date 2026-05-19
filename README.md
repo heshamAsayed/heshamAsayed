@@ -7,7 +7,7 @@
 [![LinkedIn](https://img.shields.io/badge/Hesham_Ahmed-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/hesham-a7med)
 [![GitHub](https://img.shields.io/badge/heshamAsayed-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/heshamAsayed)
 [![Email](https://img.shields.io/badge/heshmahmed146@gmail.com-FF4444?style=for-the-badge&logo=gmail&logoColor=white)](mailto:heshmahmed146@gmail.com)
-[![Location](https://img.shields.io/badge/Minya,_Egypt-00D9FF?style=for-the-badge&logo=googlemaps&logoColor=white)](#)
+[![Location](https://img.shields.io/badge/Cairo,_Egypt-00D9FF?style=for-the-badge&logo=googlemaps&logoColor=white)](#)
 
 ![Profile Views](https://komarev.com/ghpvc/?username=heshamAsayed&color=00D9FF&style=for-the-badge&label=PROFILE+VIEWS)
 
@@ -24,7 +24,7 @@ public sealed class HeshamAhmed : IDeveloper
 {
     public string Name      { get; } = "Hesham Ahmed Sayed";
     public string Title     { get; } = "Software Engineer | .NET Developer";
-    public string Location  { get; } = "Minya, Egypt 🇪🇬 ";
+    public string Location  { get; } = "Cairo, Egypt 🇪🇬 ";
     public bool   Available { get; } = true;
 
     public string[]  Education =>  [
@@ -88,18 +88,9 @@ public sealed class HeshamAhmed : IDeveloper
 
 <div align="center">
 
-<table>
-  <tr>
-    <td>
-      <img height="180" src="https://github-readme-stats.vercel.app/api?username=heshamAsayed&show_icons=true&hide_border=true&bg_color=0D1117&title_color=00D9FF&icon_color=00D9FF&text_color=8B949E&rank_icon=github&include_all_commits=true&count_private=true" />
-    </td>
-    <td>
-      <img height="180" src="https://github-readme-stats.vercel.app/api/top-langs/?username=heshamAsayed&layout=compact&hide_border=true&bg_color=0D1117&title_color=00D9FF&text_color=8B949E&langs_count=8" />
-    </td>
-  </tr>
-</table>
+<img src="https://github-profile-trophy.vercel.app/?username=heshamAsayed&theme=onedark&column=5&no-bg=true&no-frame=true" alt="Hesham's GitHub Trophies" />
 
-<br/>
+<br/><br/>
 
 <img src="https://streak-stats.demolab.com?user=heshamAsayed&hide_border=true&background=0D1117&stroke=21262D&ring=00D9FF&fire=FF4444&currStreakNum=E6EDF3&currStreakLabel=00D9FF&sideNums=E6EDF3&sideLabels=8B949E&dates=8B949E" />
 
@@ -118,7 +109,7 @@ $ curl -X POST https://github.com/heshamAsayed/api/contact \
     "linkedin"  : "linkedin.com/in/hesham-a7med",
     "github"    : "github.com/heshamAsayed",
     "phone"     : "+20 11 4728 4782",
-    "location"  : "Minya, Egypt",
+    "location"  : "Cairo, Egypt",
     "available" : true,
     "role"      : "Software Engineer / .NET Developer",
     "response"  : "< 24h"

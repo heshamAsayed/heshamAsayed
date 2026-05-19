@@ -1,0 +1,116 @@
+<div class="section-shell contact-shell">
+  <!-- <app-section-label
+  label="// ======= &;  Contact Me  &\n; ======="
+    hint="// HeshamAhmed.sendMessage() → I read everything."
+  ></app-section-label> -->
+<app-section-label
+  [label]="'//=========================================\n// &nbsp;&nbsp;&nbsp;Contact Me\n//=========================================\n\n'"
+  hint="// HeshamAhmed.sendMessage() → I read everything."
+></app-section-label>
+  <div class="contact-shell__grid">
+    <div class="contact-shell__info">
+      @for (entry of contactEntries; track entry.key) {
+        <p class="contact-shell__line">
+          <span class="code-keyword">var</span>
+          <span> {{ entry.key }} = </span>
+
+          @if (entry.href) {
+            <a class="code-string mono-link" [href]="entry.href" target="_blank" rel="noopener noreferrer">
+              "{{ entry.value }}"
+            </a>
+          } @else {
+            <span class="code-string">"{{ entry.value }}"</span>
+          }
+
+          <span>; </span>
+          <span class="code-comment">// → {{ entry.comment }}</span>
+        </p>
+      }
+
+      <p class="contact-shell__comment">// Social methods (C# style):</p>
+
+      @for (link of socialLinks.slice(0, 3); track link.label) {
+        <a class="contact-shell__method" [href]="link.url" target="_blank" rel="noopener noreferrer">
+          <span class="code-type">{{ link.label }}</span>.Open();
+          <span class="code-comment"> // → {{ link.display }}</span>
+        </a>
+      }
+    </div>
+
+    <form class="contact-shell__form" (ngSubmit)="submitForm()">
+      <input
+        type="text"
+        name="name"
+        [(ngModel)]="formValue.name"
+        placeholder="// your name..."
+      />
+
+      <input
+        type="email"
+        name="email"
+        [(ngModel)]="formValue.email"
+        placeholder="// your email..."
+      />
+
+      <textarea
+        name="message"
+        rows="7"
+        [(ngModel)]="formValue.message"
+        placeholder="// your message..."
+      ></textarea>
+
+      <button type="submit" class="solid-button contact-shell__submit">
+        @switch (submitState()) {
+          @case ('loading') { Sending... }
+          @case ('success') { ✓ Sent! }
+          @case ('error') { ✗ Failed. Try again. }
+          @default { Send Message → }
+        }
+      </button>
+    </form>
+  </div>
+
+  <footer class="contact-shell__footer">
+    <div class="contact-shell__footer-grid">
+      <div>
+        <p class="contact-shell__brand">
+          <span class="navbar__brace">&#123;</span> H_A_S <span class="navbar__brace">&#125;</span>
+        </p>
+        <p class="contact-shell__foot-comment">// .NET Developer · Building scalable systems</p>
+      </div>
+
+      <div>
+        <p class="contact-shell__foot-title">/* Projects */</p>
+        @for (project of footerProjects; track project.label) {
+          <a class="contact-shell__foot-link" [href]="project.target">→ {{ project.label }}</a>
+        }
+      </div>
+
+      <div>
+        <p class="contact-shell__foot-title">/* Navigate */</p>
+        @for (link of footerNav; track link.label) {
+          <a class="contact-shell__foot-link" [href]="link.target">→ {{ link.label }}</a>
+        }
+      </div>
+
+      <div>
+        <p class="contact-shell__foot-title">/* Connect */</p>
+        @for (link of socialLinks; track link.label) {
+          <a
+            class="contact-shell__foot-icon"
+            [href]="link.url"
+            [attr.target]="link.url === '#' ? null : '_blank'"
+            [attr.rel]="link.url === '#' ? null : 'noopener noreferrer'"
+            [attr.aria-label]="link.label"
+            [class.contact-shell__foot-icon--disabled]="link.url === '#'"
+          >
+            <fa-icon [icon]="footerIcon(link.platform)"></fa-icon>
+          </a>
+        }
+      </div>
+    </div>
+
+    <br><br><br>
+    <p class="contact-shell__copyright">// © 2026 Hesham Ahmed. All rights reserved.</p>
+  </footer>
+</div>

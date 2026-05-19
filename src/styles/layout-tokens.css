@@ -1,0 +1,36 @@
+:root {
+  color-scheme: dark;
+  --display-font: 'Outfit', system-ui, sans-serif;
+  --mono-font: 'Fira Code', 'JetBrains Mono', monospace;
+  --font-size-base: 0.72rem;
+  --font-size-small: 0.65rem;
+  --font-size-code: 0.68rem;
+  --font-size-terminal: 0.65rem;
+  --font-size-xs: 0.58rem;
+  --font-size-sm: 0.62rem;
+  --font-size-label: 0.85rem;
+  --font-size-badge: 0.7rem;
+  --font-size-meta: 0.72rem;
+  --font-size-modal-close: 1.05rem;
+  --font-size-overlay: 0.62rem;
+  --font-size-progress: 0.55rem;
+  --font-size-social-icon: 0.8rem;
+  --font-size-section-title: 1.1rem;
+  --font-size-nav-label: 0.72rem;
+  --font-size-nav-brand: 0.88rem;
+  --font-size-nav-link: 0.78rem;
+  --font-size-nav-btn: 0.65rem;
+  --font-size-nav-menu: 1.1rem;
+  --font-size-nav-close: 1.8rem;
+  --font-size-mobile-link: 1.1rem;
+  --section-width: 1180px;
+  --skills-section-width: 90vw;
+  --content-gutter: 1rem;
+  --section-padding-y: clamp(4rem, 6vw, 5.5rem);
+  --radius-lg: 32px;
+  --radius-md: 22px;
+  --radius-sm: 14px;
+  --shadow-soft: 0 24px 30px rgba(7, 9, 20, 0.22);
+  --shadow-glow: 0 0 0 1px rgba(116, 199, 236, 0.18), 0 18px 54px rgba(116, 199, 236, 0.14);
+  --transition-base: 0.28s ease;
+}

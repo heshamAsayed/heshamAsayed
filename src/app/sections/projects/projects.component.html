@@ -1,0 +1,198 @@
+<div class="section-shell projects-shell" #projectsSection>
+  <app-section-label
+  [label]="'//=========================================\n// &nbsp;&nbsp;&nbsp;My_Projects\n//=========================================\n\n'"
+  
+  hint="// Section: Projects — Fetching repositories..."
+  ></app-section-label>
+  
+  <!-- label="// My_Projects" -->
+   <!-- <app-section-label
+    label="// My_Projects"
+    hint="// Section: Enum Filtering" 
+  ></app-section-label> -->
+
+  <app-terminal-window
+    title="hesham@portfolio: ~/filtering $"
+    [lines]="introLines()"
+    [collapsed]="introCollapsed()"
+    [canToggle]="introReady()"
+    [formatLine]="formatTerminalLine.bind(this)"
+    (toggle)="toggleIntroTerminal()"
+  ></app-terminal-window>
+
+  <div class="projects-shell__filters">
+    @for (filter of filters; track filter) {
+      <button
+        type="button"
+        class="projects-shell__filter"
+        [class.projects-shell__filter--active]="selectedFilter() === filter"
+        (click)="selectFilter(filter)"
+      >
+        --{{ filter }}
+      </button>
+    }
+  </div>
+
+  <app-terminal-window
+    title="hesham@portfolio: ~/projects $"
+    [lines]="fetcherLines()"
+    [collapsed]="fetcherCollapsed()"
+    [canToggle]="fetcherReady()"
+    [formatLine]="formatTerminalLine.bind(this)"
+    (toggle)="toggleFetcherTerminal()"
+  ></app-terminal-window>
+
+  <div class="projects-shell__grid">
+    @if (github.loading()) {
+      @for (_ of [1, 2, 3, 4]; track $index) {
+        <article class="projects-shell__card panel projects-shell__card--loading"></article>
+      }
+    } @else if (showRepos()) {
+      @for (repo of visibleRepos(); track repo.name) {
+        <article class="projects-shell__card panel" (click)="openModal(repo)">
+          <div class="projects-shell__preview">
+            @if (getPreviewUrl(repo); as previewUrl) {
+              <iframe
+                title="{{ repo.name }} preview"
+                [src]="previewUrl"
+                loading="lazy"
+              ></iframe>
+            } @else {
+              <div
+                class="projects-shell__placeholder"
+                [style.--language-color]="languageBadgeColor(repo.language)"
+              >
+                <span>{{ repo.language }}</span>
+                <strong>{{ repo.name }}</strong>
+              </div>
+            }
+          </div>
+
+          <div class="projects-shell__card-body">
+            @if (repo.featured) {
+              <span class="projects-shell__featured">FEATURED</span>
+            }
+
+            <h3>{{ repo.name }}</h3>
+            <p>{{ truncateDescription(repo.description) }}</p>
+
+            <div class="projects-shell__badges">
+              <span class="projects-shell__language">
+                <span
+                  class="projects-shell__language-dot"
+                  [style.background]="languageBadgeColor(repo.language)"
+                ></span>
+                {{ repo.language }}
+              </span>
+
+              @if (repo.archived) {
+                <span class="projects-shell__archived">Archived</span>
+              }
+            </div>
+
+            <div class="projects-shell__topics">
+              @for (topic of repoTopics(repo); track topic) {
+                <span>{{ topic }}</span>
+              }
+            </div>
+
+            <div class="projects-shell__meta">
+              <span>★ {{ repo.stars }}</span>
+              <span>⑂ {{ repo.forks }}</span>
+              <span>🕒 {{ relativeTime(repo.updatedAt) }}</span>
+            </div>
+
+            <div class="projects-shell__card-actions">
+              @if (repo.homepage) {
+                <a
+                  class="solid-button projects-shell__mini-button"
+                  [href]="repo.homepage"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  (click)="$event.stopPropagation()"
+                >
+                  Live Demo
+                </a>
+              }
+
+              <a
+                class="ghost-button projects-shell__mini-button"
+                [href]="repo.htmlUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                (click)="$event.stopPropagation()"
+              >
+                Repo
+              </a>
+            </div>
+          </div>
+        </article>
+      }
+    }
+  </div>
+
+  @if (!github.loading() && visibleRepos().length) {
+    <p class="projects-shell__done">// ✓ {{ visibleRepos().length }} repositories rendered</p>
+  }
+</div>
+
+@if (modalRepo(); as repo) {
+  <div class="projects-shell__modal-backdrop" (click)="closeModal()">
+    <div class="projects-shell__modal panel" (click)="$event.stopPropagation()">
+      <div class="projects-shell__modal-top">
+        <h3>{{ repo.name }}</h3>
+        <button type="button" class="projects-shell__close" (click)="closeModal()">✕</button>
+      </div>
+
+      <div class="projects-shell__modal-grid">
+        <div class="projects-shell__modal-column projects-shell__readme">
+          <h4>README</h4>
+
+          @if (modalLoading()) {
+            <p>Loading README...</p>
+          } @else {
+            <div class="projects-shell__readme-content" [innerHTML]="renderMarkdown(modalReadme())"></div>
+          }
+        </div>
+
+        <div class="projects-shell__modal-column">
+          <p>{{ repo.description }}</p>
+
+          <p><strong>Language breakdown:</strong> {{ languageBreakdown(repo).join(' | ') }}</p>
+          <p><strong>Stars:</strong> ★ {{ repo.stars }} | <strong>Forks:</strong> ⑂ {{ repo.forks }} | <strong>Issues:</strong> {{ repo.openIssues }}</p>
+          <p><strong>Created:</strong> {{ repo.createdAt | date: 'mediumDate' }} | <strong>Last push:</strong> {{ repo.updatedAt | date: 'mediumDate' }}</p>
+
+          <div class="projects-shell__topics">
+            @for (topic of repoTopics(repo); track topic) {
+              <span>{{ topic }}</span>
+            }
+          </div>
+
+          <div class="projects-shell__preview-container">
+            @if (repo.homepage) {
+              <iframe
+                title="{{ repo.name }} preview"
+                [src]="getPreviewUrl(repo)"
+                loading="lazy"
+              ></iframe>
+            } @else {
+              <div class="projects-shell__preview-placeholder"></div>
+            }
+          </div>
+
+          <div class="projects-shell__modal-actions">
+            <a class="ghost-button" [href]="repo.htmlUrl" target="_blank" rel="noopener noreferrer">
+              ↗ View on GitHub
+            </a>
+
+            @if (repo.homepage) {
+              <a class="solid-button" [href]="repo.homepage" target="_blank" rel="noopener noreferrer">
+                🌐 Live Demo
+              </a>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}

@@ -1,0 +1,247 @@
+<div class="section-shell hero-shell">
+  <app-section-label label="// Welcome You, my name is "></app-section-label>
+  
+  <div class="hero-shell__layout">
+    <div class="hero-shell__content">
+      <div class="hero-shell__header">
+        <h1 class="hero-shell__name">Hesham Ahmed</h1>
+
+        <p class="hero-shell__role">
+          <span class="code-keyword">const</span>
+          <span> role </span>
+          <span>=</span>
+          <span class="code-string">"{{ typedRole() }}"</span>
+          <span>;</span>
+          <span class="caret-block"></span>
+        </p>
+      </div>
+
+      <article class="code-panel hero-shell__code">
+        <div class="code-toolbar">
+          <span class="toolbar-title">
+            <span class="code-number">C#</span>
+            <span>Profile.cs</span>
+          </span>
+
+          <span class="toolbar-dots">
+            <span class="toolbar-dot toolbar-dot--yellow"></span>
+            <span class="toolbar-dot toolbar-dot--green"></span>
+          </span>
+        </div>
+
+        <div class="code-body">
+          <div class="code-grid">
+            <div class="code-line">
+              <span class="code-line-number"></span>
+              <span class="code-line-content">
+                <span class="code-keyword">public</span>
+                <span class="code-keyword"> class </span>
+                <strong>Profile</strong>
+                <span> : </span>
+                <span class="code-type">IDeveloper</span>
+              </span>
+            </div>
+
+            <div class="code-line">
+              <span class="code-line-number"></span>
+              <span class="code-line-content">&#123;</span>
+            </div>
+
+            <div class="code-line">
+              <span class="code-line-number"></span>
+              <span class="code-line-content">
+                &nbsp;
+                <span class="code-keyword">public string</span>
+                <span> Specialization = </span>
+                <span class="code-string">"ASP.NET CORE | SQL | EF Core"</span>;
+              </span>
+            </div>
+
+            <div class="code-line">
+              <span class="code-line-number"></span>
+              <span class="code-line-content">
+                &nbsp;
+                <span class="code-keyword">public bool</span>
+                <span>   IsAvailable  = </span>
+                <span class="code-boolean">true</span>;
+                <span class="code-comment">
+                  // <span class="status-dot"></span>Available for Full-time | Freelance
+                </span>
+              </span>
+            </div>
+
+            <div class="code-line">
+              <span class="code-line-number"></span>
+              <span class="code-line-content">
+                &nbsp;
+                <span class="code-keyword">public int</span>
+                <span>    Projects     = </span>
+                <span class="code-number">{{ projectDisplay() }}</span>;
+                <span class="code-comment hero-shell__project-comment">{{ projectFetchComment() }}</span>
+              </span>
+            </div>
+
+            <div class="code-line">
+              <span class="code-line-number"></span>
+              <span class="code-line-content">
+                &nbsp;
+                <span class="code-keyword">public string</span>[]
+                <span> Education    => [</span>
+              </span>
+            </div>
+
+            <div class="code-line">
+              <span class="code-line-number"></span>
+              <span class="code-line-content hero-shell__social-line">
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="code-string">"B.Sc. Computer Science – Minya University"</span>,
+              </span>
+            </div>
+
+            <div class="code-line">
+              <span class="code-line-number"></span>
+              <span class="code-line-content hero-shell__social-line">
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="code-string">"Full Stack .NET – ITI Graduate"</span>
+              </span>
+            </div>
+
+            <div class="code-line">
+              <span class="code-line-number"></span>
+              <span class="code-line-content">
+                &nbsp;&nbsp;<span>];</span>
+              </span>
+            </div>
+
+            <div class="code-line">
+              <span class="code-line-number"></span>
+              <span class="code-line-content">
+                &nbsp;
+                <span class="code-keyword">public string</span>[]
+                <span> Links        = &#123;</span>
+              </span>
+            </div>
+
+            @for (link of socialLinks; track link.label; let lineIndex = $index) {
+              <div class="code-line">
+                <span class="code-line-number"></span>
+                <span class="code-line-content hero-shell__social-line">
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <a
+                    class="code-string hero-shell__social-link"
+                    [style.--brand-color]="link.color"
+                    [href]="link.url"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    "{{ link.display }}"
+                  </a>
+                  <span>{{ lineIndex === socialLinks.length - 1 ? '' : ',' }}</span>
+                  <button
+                    type="button"
+                    class="hero-shell__social-icon"
+                    [style.color]="link.color"
+                    (click)="openSocialLink(link.url)"
+                    [attr.aria-label]="link.label"
+                  >
+                    <fa-icon [icon]="iconForPlatform(link.platform)"></fa-icon>
+                  </button>
+                </span>
+              </div>
+            }
+
+            <div class="code-line">
+              <span class="code-line-number"></span>
+              <span class="code-line-content">&nbsp;&nbsp;&#125;;</span>
+            </div>
+
+            <div class="code-line">
+              <span class="code-line-number"></span>
+              <span class="code-line-content">
+                &nbsp;
+                <span class="code-keyword hero-shell__trigger_Line">public void</span>
+                <span class="code-method"> DownloadCV</span>()
+                <span> &#123; </span>
+                <button type="button" class="hero-shell__trigger" (click)="downloadCv()">
+                  <fa-icon [icon]="faDownload"></fa-icon>
+                  /* Click to Execute Trigger */
+                </button>
+                <span> &#125;</span>
+              </span>
+            </div>
+
+            <div class="code-line">
+              <span class="code-line-number"></span>
+              <span class="code-line-content">
+                &nbsp;
+                <span class="code-keyword hero-shell__trigger_Line">public void</span>
+                <span class="code-method"> ViewCV</span>()
+                <span> &#123; </span>
+                <button type="button" class="hero-shell__trigger" (click)="viewCv()">
+                  <fa-icon [icon]="faEye"></fa-icon>
+                  /* Open PDF In New Tab */
+                </button>
+                <span> &#125;</span>
+              </span>
+            </div>
+
+            <div class="code-line">
+              <span class="code-line-number"></span>
+              <span class="code-line-content">&#125;<span class="caret-block"></span></span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="hero-shell__image" (mouseenter)="onImageEnter()" (mouseleave)="onImageLeave()">
+      <div class="hero-shell__image-frame">
+        <img
+          class="hero-shell__photo"
+          [class.hero-shell__photo--enhanced]="isImageZoomed()"
+          [src]="profileImagePath"
+          alt="Hesham Ahmed portrait"
+        />
+
+        <div class="hero-shell__overlay" [class.hero-shell__overlay--visible]="overlayVisible()">
+          <div class="hero-shell__overlay-content">
+            @for (line of overlayLines(); track $index) {
+              <p class="hero-shell__overlay-line" [innerHTML]="formatOverlayLine(line)"></p>
+            }
+
+            @if (overlayProgressVisible()) {
+              <div class="hero-shell__progress">
+                <div class="hero-shell__progress-label">
+                  <span>Enhancing Image...</span>
+                  <span>{{ overlayProgress() }}%</span>
+                </div>
+
+                <div class="hero-shell__progress-bar">
+                  <span [style.width.%]="overlayProgress()"></span>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-shell__actions">
+        <a class="ghost-button hero-shell__action-link" href="/Hesham%20Ahmed%20_%20CV.pdf" target="_blank" rel="noopener noreferrer">
+          <fa-icon [icon]="faEye"></fa-icon>
+          <span>View CV</span>
+        </a>
+
+        <a class="ghost-button hero-shell__action-link" href="/Hesham%20Ahmed%20_%20CV.pdf" download="Hesham Ahmed CV.pdf">
+          <fa-icon [icon]="faDownload"></fa-icon>
+          <span>Download CV</span>
+        </a>
+
+        <a class="solid-button hero-shell__action-link" href="#contact">
+          <fa-icon [icon]="faPaperPlane"></fa-icon>
+          <span>Hire Me</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
